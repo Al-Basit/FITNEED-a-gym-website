@@ -1,0 +1,618 @@
+:root {
+  /* colors */
+  --clr-primary: hsl(230 73% 5%); /* bg-color 1 */
+  --clr-secondary: hsl(191 92% 14%); /* bg-color 2 */
+
+  --clr-accent-500: hsl(169 88% 75%);
+  --clr-accent-300: hsl(169 70% 85%);
+
+  --clr-white: hsl(240 0% 100%);
+  --clr-dark: hsl(230 0% 0%);
+
+  /* font-sizes */
+  --fs-300: 0.8125rem;
+  --fs-400: 0.875rem;
+  --fs-500: 0.9375rem;
+  --fs-600: 1.345rem;
+  --fs-700: 1.875rem;
+  --fs-800: 2.5rem;
+  --fs-900: 3.5rem;
+
+  --fs-body: var(--fs-400);
+  --fs-primary-heading: var(--fs-800);
+  --fs-secondary-heading: var(--fs-700);
+  --fs-logo: var(--fs-600);
+  --fs-nav: var(--fs-500);
+  --fs-button: var(--fs-500);
+
+  /* font-weight */
+  --fw-regular: 400;
+  --fw-semi-bold: 500;
+  --fw-bold: 700;
+
+  /* font families */
+  --ff-primary: "Sora", sans-serif;
+  --ff-secondary: "Lora", serif;
+
+  --ff-body: var(--ff-primary);
+  --ff-heading: var(--ff-secondary);
+
+  /* text-shadows */
+  --text-shadow-dark: #000 0px 0px 4px, #000 0px 0px 4px, #000 0px 0px 4px;
+  --text-shadow-light: #fff 0px 0px 2px, #fff 0px 0px 2px, #fff 0px 0px 2px;
+
+  /* box-shadows */
+  --box-shadow-100: 0 1.125em 1em -1em var(--clr-white);
+  --box-shadow-200: 0 1.125em 1em -1em var(--clr-dark);
+
+  --box-shadow-btn: var(--clr-white) 0px 2px 5px 0px;
+
+  /* Sizes */
+  --size-100: 0.25rem;
+  --size-200: 0.5rem;
+  --size-300: 0.75rem;
+  --size-400: 1rem;
+  --size-500: 1.5rem;
+  --size-600: 2rem;
+  --size-700: 3rem;
+  --size-800: 4rem;
+  --size-900: 5rem;
+}
+
+@media (min-width: 50em) {
+  :root {
+    --fs-body: var(--fs-500);
+    --fs-primary-heading: var(--fs-900);
+    --fs-secondary-heading: var(--fs-800);
+    --fs-nav: var(--fs-300);
+  }
+}
+
+/* ------------------------- */
+/* Reset                     */
+/* ------------------------- */
+
+/* Box sizing rules */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Remove default margin and padding */
+* {
+  margin: 0;
+  padding: 0;
+  font: inherit;
+}
+
+/* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
+ul[role="list"],
+ol[role="list"] {
+  list-style: none;
+}
+
+/* Set core root defaults */
+html:focus-within {
+  scroll-behavior: smooth;
+}
+
+html,
+body {
+  height: 100%;
+  scroll-behavior: smooth;
+}
+
+/* Set core body defaults */
+body {
+  text-rendering: optimizeSpeed;
+  line-height: 1.5;
+  overflow-x: hidden;
+}
+
+/* A elements that don't have a class get default styles */
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+}
+
+/* Make images easier to work with */
+img,
+picture,
+svg {
+  max-width: 100%;
+  display: block;
+}
+
+/* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
+@media (prefers-reduced-motion: reduce) {
+  html:focus-within {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* general styling */
+
+body {
+  font-size: var(--fs-body);
+  font-family: var(--ff-body);
+  color: var(--clr-white);
+  background-color: var(--clr-primary);
+}
+
+p:not([class]) {
+  opacity: 0.7;
+  max-width: 38ch;
+}
+
+p[data-width="wide"] {
+  max-width: 48ch;
+}
+
+/* button */
+
+.btn {
+  display: inline-flex;
+  cursor: pointer;
+  text-decoration: none;
+  border: 0;
+  border-radius: 100vmax;
+  padding: 1.25em 2.5em;
+  font-weight: var(--fw-bold);
+  font-size: var(--fs-button);
+  line-height: 1;
+  color: var(--clr-dark);
+  background-color: var(--clr-accent-500);
+  box-shadow: var(--box-shadow-btn);
+  transition: all 0.3s;
+}
+
+.btn[data-type="btn-center"] {
+  display: block;
+  margin-inline: auto;
+}
+
+.btn[data-type="btn-secondary"] {
+  background-color: transparent;
+  border: 0.2em solid var(--clr-accent-500);
+  color: var(--clr-accent-500);
+  box-shadow: none;
+  display: block;
+  margin: 0 auto;
+}
+
+.btn:hover,
+.btn:focus-visible {
+  background-color: var(--clr-accent-300);
+}
+
+.btn[data-type="btn-secondary"]:hover,
+.btn[data-type="btn-secondary"]:focus-visible {
+  background-color: var(--clr-accent-500);
+  color: var(--clr-primary);
+}
+
+/* Header */
+main {
+  background-image: url("/images/bg.jpg");
+  background-position: center center;
+  background-size: cover;
+}
+
+.primary-header {
+  padding-top: var(--size-700);
+}
+
+.nav-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-weight: var(--fw-bold);
+  text-transform: uppercase;
+  font-size: var(--fs-700);
+  color: var(--clr-accent-500);
+}
+
+.mobile-nav-toggle {
+  display: none;
+}
+
+.nav-list {
+  display: flex;
+  gap: clamp(var(--size-400), 5vw, var(--size-700));
+  font-size: var(--fs-nav);
+  font-weight: var(--fw-semi-bold);
+}
+
+.nav-list a {
+  text-decoration: none;
+  color: var(--clr-white);
+  transition: all 0.3s;
+}
+
+.nav-list a:hover,
+.nav-list a:active {
+  color: var(--clr-accent-500);
+  padding-bottom: var(--size-100);
+  border-bottom: var(--size-100) solid;
+}
+
+@media (max-width: 50em) {
+  .primary-navigation {
+    display: none;
+    position: fixed;
+    padding: var(--size-700);
+    inset: 7rem var(--size-400) auto;
+    background: var(--clr-primary);
+    border-radius: var(--size-100);
+    z-index: 100;
+  }
+
+  .primary-header[data-overlay]::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: linear-gradient(rgb(0 0 0 / 0), rgb(0 0 0 / 0.8));
+  }
+
+  .nav-list {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .primary-navigation[data-visible] {
+    display: block;
+  }
+
+  .mobile-nav-toggle {
+    display: block;
+    position: fixed;
+    font-size: var(--fs-700);
+    top: var(--size-600);
+    right: var(--size-400);
+    background: transparent;
+    cursor: pointer;
+    border: 0;
+    padding: var(--size-200);
+    color: var(--clr-accent-300);
+    z-index: 10;
+  }
+}
+
+/* Introduction Section */
+
+section.introduction {
+  position: relative;
+}
+
+.introduction-img {
+  position: absolute;
+  right: 10%;
+  bottom: 0;
+}
+
+/* Programs section */
+
+.program-item {
+  position: relative;
+}
+
+.program-item img {
+  border-radius: 1em;
+  opacity: 0.7;
+}
+
+.program-item-content {
+  position: absolute;
+  bottom: 0;
+  padding: var(--size-400);
+}
+
+/* Products section */
+
+.product-item {
+  position: relative;
+  padding: var(--size-500) 5em;
+  border-radius: var(--size-300);
+  width: 25em;
+}
+
+@media (max-width: 50em) {
+  .product-item {
+    width: 20em;
+  }
+}
+
+.product-item img {
+  aspect-ratio: 2 / 3;
+}
+
+/* Pricing  */
+@media (min-width: 50em) {
+  .pricing .plans {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
+}
+
+.plan-item {
+  padding: var(--size-700);
+  border-radius: var(--size-700);
+}
+
+.offer-title {
+  font-size: var(--fs-600);
+  margin: var(--size-400) -3rem;
+  letter-spacing: var(--size-100);
+  text-align: center;
+  background-color: var(--clr-dark);
+}
+
+.package-list > li {
+  padding: var(--size-300);
+  font-size: var(--fs-600);
+  list-style: none;
+}
+
+.package-list > li::before {
+  content: "✓";
+  color: rgb(107, 243, 107);
+  padding-right: var(--size-200);
+  font-weight: var(--fw-bold);
+}
+
+/* footer */
+
+.social-icons {
+  display: flex;
+  align-items: center;
+  margin-block: var(--size-400);
+  gap: 1.2em;
+  text-shadow: 2px 2px 8px var(--clr-accent-500);
+}
+
+@media (max-width: 50em) {
+  .social-icons {
+    justify-content: center;
+  }
+}
+
+.primary-footer-links li a,
+.contact-links li a {
+  color: var(--clr-white);
+  text-decoration: none;
+  font-size: 1.1em;
+  font-weight: var(--fw-semi-bold);
+}
+
+.primary-footer-links li a:hover {
+  color: var(--clr-accent-300);
+}
+
+.primary-footer-links li,
+.contact-links li {
+  margin-top: var(--size-500);
+}
+
+.contact-links li i {
+  font-size: var(--fs-600);
+  padding-right: var(--size-300);
+  color: var(--clr-accent-500);
+}
+
+/* ------------------------- */
+/* Utility classes           */
+/* ------------------------- */
+
+.even-columns {
+  display: grid;
+  gap: var(--gap, 1rem);
+}
+
+@media (min-width: 50em) {
+  .even-columns {
+    grid-auto-flow: column;
+    grid-auto-columns: 1fr;
+  }
+}
+
+:where(.flow :not(:first-child)) {
+  margin-top: var(--flow-spacer, 3em);
+}
+
+.container {
+  --max-width: 1110px;
+  --container-padding: 1rem;
+
+  width: min(var(--max-width), 100% - (var(--container-padding) * 2));
+  margin-inline: auto;
+}
+
+.items-wrapper {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(25em, 1fr));
+  place-items: center;
+  gap: 3em;
+  overflow: hidden;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.vertical-align-center {
+  align-items: center;
+}
+
+.justify-self-end {
+  justify-self: end;
+}
+
+@media (min-width: 50em) {
+  .justify-self-end-md {
+    justify-self: end;
+  }
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-center p {
+  margin-inline: auto;
+}
+
+@media (max-width: 50em) {
+  .text-center-sm-only {
+    text-align: center;
+  }
+
+  .text-center-sm-only p {
+    margin-inline: auto;
+  }
+}
+
+/* colors */
+
+.bg-dark {
+  background-color: var(--clr-dark);
+}
+.bg-secondary {
+  background-color: var(--clr-secondary);
+}
+.bg-accent {
+  background-color: var(--clr-accent-500);
+}
+.bg-white {
+  background-color: var(--clr-white);
+}
+
+.text-dark {
+  color: var(--clr-dark);
+}
+.text-accent-500 {
+  color: var(--clr-accent-500);
+}
+.text-accent-300 {
+  color: var(--clr-accent-300);
+}
+.text-white {
+  color: var(--clr-white);
+}
+
+.text-shadow-dark {
+  text-shadow: var(--text-shadow-dark);
+}
+.text-shadow-light {
+  text-shadow: var(--text-shadow-light);
+}
+
+/* typography */
+
+.fw-bold {
+  font-weight: var(--fw-bold);
+}
+.fw-semi-bold {
+  font-weight: var(--fw-semi-bold);
+}
+.fw-regular {
+  font-weight: var(--fw-regular);
+}
+
+.letter-spacing-1 {
+  letter-spacing: 4.75px;
+}
+.letter-spacing-2 {
+  letter-spacing: 2.7px;
+}
+.letter-spacing-3 {
+  letter-spacing: 2.35px;
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+.special-text {
+  color: var(--clr-accent-500);
+}
+
+.fs-900 {
+  font-size: var(--fs-900);
+}
+.fs-800 {
+  font-size: var(--fs-800);
+}
+.fs-700 {
+  font-size: var(--fs-700);
+}
+.fs-600 {
+  font-size: var(--fs-600);
+}
+.fs-500 {
+  font-size: var(--fs-500);
+}
+.fs-400 {
+  font-size: var(--fs-400);
+}
+.fs-300 {
+  font-size: var(--fs-300);
+}
+
+.fs-primary-heading {
+  font-size: var(--fs-primary-heading);
+  max-width: 17ch;
+}
+.fs-secondary-heading {
+  font-size: var(--fs-secondary-heading);
+  width: 100%;
+}
+
+.fs-primary-heading,
+.fs-secondary-heading {
+  display: inline-block;
+  font-family: var(--ff-heading);
+  line-height: 1.2;
+}
+
+.padding-block-900 {
+  padding-block: var(--size-900);
+}
+.padding-block-700 {
+  padding-block: var(--size-700);
+}
+
+.margin-bottom-700 {
+  margin-block-end: var(--size-700);
+}
+
+@media (max-width: 50em) {
+  .display-sm-none {
+    display: none;
+  }
+}
+
+@media (min-width: 50em) {
+  .display-md-inline-flex {
+    display: inline-flex;
+  }
+}
